@@ -90,19 +90,37 @@ btnDecimal.addEventListener("click", function() {
     updateDisplay();
 });
 
+// operator buttons
 btnDivide.addEventListener("click", function() {
+    operate();
     currentOpperator = "divide";
+    if (currentArr[0]) {
+        currentValue = parseInt(currentArr[0]) / parseInt(currentValue);
+        currentArr[0] = currentValue;
+        updateDisplay();
+        currentValue = "";
+    } else {
     currentArr.push(parseInt(currentValue));
     currentValue = "";
+    }
 });
 
 btnMultiply.addEventListener("click", function() {
+    operate();
     currentOpperator = "multiply";
+    if (currentArr[0]) {
+        currentValue = parseInt(currentArr[0]) * parseInt(currentValue);
+        currentArr[0] = currentValue;
+        updateDisplay();
+        currentValue = "";
+    } else {
     currentArr.push(parseInt(currentValue));
     currentValue = "";
+    }
 });
 
 btnSubtract.addEventListener("click", function() {
+    operate();
     currentOpperator = "subtract";
     if (currentArr[0]) {
         currentValue = parseInt(currentArr[0]) - parseInt(currentValue);
@@ -116,6 +134,7 @@ btnSubtract.addEventListener("click", function() {
 });
 
 btnAdd.addEventListener("click", function() {
+    operate();
     currentOpperator = "add";
     if (currentArr[0]) {
         currentValue = parseInt(currentArr[0]) + parseInt(currentValue);
@@ -140,9 +159,7 @@ btnPercent.addEventListener("click", function() {
 });
 
 
-
-
-btnEquals.addEventListener("click", function() {
+function operate() {
     if (currentOpperator == "add") {
         currentArr.push(parseInt(currentValue));
         currentValue = add(currentArr);
@@ -164,6 +181,11 @@ btnEquals.addEventListener("click", function() {
         currentValue = percentOf(currentArr);
         currentArr = [];
     } 
+    updateDisplay();
+}
+
+btnEquals.addEventListener("click", function() {
+    operate();
     updateDisplay();
 });
 
