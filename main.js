@@ -90,7 +90,23 @@ btnDecimal.addEventListener("click", function() {
     updateDisplay();
 });
 
+btnDivide.addEventListener("click", function() {
+    currentOpperator = "divide";
+    currentArr.push(parseInt(currentValue));
+    currentValue = "";
+});
 
+btnMultiply.addEventListener("click", function() {
+    currentOpperator = "multiply";
+    currentArr.push(parseInt(currentValue));
+    currentValue = "";
+});
+
+btnSubtract.addEventListener("click", function() {
+    currentOpperator = "subtract";
+    currentArr.push(parseInt(currentValue));
+    currentValue = "";
+});
 
 btnAdd.addEventListener("click", function() {
     currentOpperator = "add";
@@ -111,13 +127,36 @@ btnEquals.addEventListener("click", function() {
         currentArr.push(parseInt(currentValue));
         currentValue = add(currentArr);
         currentArr = [];
-    }
+    } else if (currentOpperator == "subtract") {
+        currentArr.push(parseInt(currentValue));
+        currentValue = subtract(currentArr);
+        currentArr = [];
+    } else if (currentOpperator == "divide") {
+        currentArr.push(parseInt(currentValue));
+        currentValue = divide(currentArr);
+        currentArr = [];
+    } else if (currentOpperator == "multiply") {
+        currentArr.push(parseInt(currentValue));
+        currentValue = multiply(currentArr);
+        currentArr = [];
+    } 
     updateDisplay();
 });
 
+function divide(currentArr) {
+    return currentArr.reduce((a, b) => a - b);
+}
+
+function multiply(currentArr) {
+    return currentArr.reduce((a, b) => a * b);
+}
+
+function subtract(currentArr) {
+    return currentArr.reduce((a, b) => a - b);
+}
 
 function add(currentArr) {
-    return currentArr.reduce((a, b) => a + b, 0);
+    return currentArr.reduce((a, b) => a + b);
 }
 
 function updateDisplay() {
