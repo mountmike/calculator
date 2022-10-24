@@ -31,13 +31,7 @@ let currentArr = [];
 let currentOpperator = "";
 let result = "";
 
-if (currentValue == "") {
-    displayScreen.innerText = defaultOutput;
-}
-
-
-
-
+updateDisplay();
 
 btnClear.addEventListener("click", function() {
     currentValue = "";
@@ -51,43 +45,83 @@ btn0.addEventListener("click", function() {
     updateDisplay();
 });
 btn1.addEventListener("click", function() {
-    currentValue = currentValue + "1";
+    if (typeof(currentValue) == 'string') {
+        currentValue = currentValue + "1";
+    } else {
+        currentValue = "1";
+    }
     updateDisplay();
 });
 btn2.addEventListener("click", function() {
-    currentValue = currentValue + "2";
+    if (typeof(currentValue) == 'string') {
+        currentValue = currentValue + "2";
+    } else {
+        currentValue = "2";
+    }
     updateDisplay();
 });
 btn3.addEventListener("click", function() {
-    currentValue = currentValue + "3";
+    if (typeof(currentValue) == 'string') {
+        currentValue = currentValue + "3";
+    } else {
+        currentValue = "3";
+    }
     updateDisplay();
 });
 btn4.addEventListener("click", function() {
-    currentValue = currentValue + "4";
+    if (typeof(currentValue) == 'string') {
+        currentValue = currentValue + "4";
+    } else {
+        currentValue = "4";
+    }
     updateDisplay();
 });
 btn5.addEventListener("click", function() {
-    currentValue = currentValue + "5";
+    if (typeof(currentValue) == 'string') {
+        currentValue = currentValue + "5";
+    } else {
+        currentValue = "5";
+    }
     updateDisplay();
 });
 btn6.addEventListener("click", function() {
-    currentValue = currentValue + "6";
+    if (typeof(currentValue) == 'string') {
+        currentValue = currentValue + "6";
+    } else {
+        currentValue = "6";
+    }
     updateDisplay();
 });
 btn7.addEventListener("click", function() {
-    currentValue = currentValue + "7";
+    if (typeof(currentValue) == 'string') {
+        currentValue = currentValue + "7";
+    } else {
+        currentValue = "7";
+    }
     updateDisplay();
 });
 btn8.addEventListener("click", function() {
-    currentValue = currentValue + "8";
+    if (typeof(currentValue) == 'string') {
+        currentValue = currentValue + "8";
+    } else {
+        currentValue = "8";
+    }
     updateDisplay();
 });
 btn9.addEventListener("click", function() {
-    currentValue = currentValue + "9";
+    if (typeof(currentValue) == 'string') {
+        currentValue = currentValue + "9";
+    } else {
+        currentValue = "9";
+    }
     updateDisplay();
 });
 btnDecimal.addEventListener("click", function() {
-    currentValue = currentValue + ".";
+    if (typeof(currentValue) == 'string') {
+        currentValue = currentValue + ".";
+    } else {
+        currentValue = ".";
+    }
     updateDisplay();
 });
 
@@ -96,12 +130,12 @@ btnDivide.addEventListener("click", function() {
     operate();
     currentOpperator = "divide";
     if (currentArr[0]) {
-        currentValue = parseInt(currentArr[0]) / parseInt(currentValue);
+        currentValue = parseFloat(currentArr[0]) / parseFloat(currentValue);
         currentArr[0] = currentValue;
         updateDisplay();
         currentValue = "";
     } else {
-    currentArr.push(parseInt(currentValue));
+    currentArr.push(parseFloat(currentValue));
     currentValue = "";
     }
 });
@@ -110,12 +144,12 @@ btnMultiply.addEventListener("click", function() {
     operate();
     currentOpperator = "multiply";
     if (currentArr[0]) {
-        currentValue = parseInt(currentArr[0]) * parseInt(currentValue);
+        currentValue = parseFloat(currentArr[0]) * parseFloat(currentValue);
         currentArr[0] = currentValue;
         updateDisplay();
         currentValue = "";
     } else {
-    currentArr.push(parseInt(currentValue));
+    currentArr.push(parseFloat(currentValue));
     currentValue = "";
     }
 });
@@ -124,12 +158,12 @@ btnSubtract.addEventListener("click", function() {
     operate();
     currentOpperator = "subtract";
     if (currentArr[0]) {
-        currentValue = parseInt(currentArr[0]) - parseInt(currentValue);
+        currentValue = parseFloat(currentArr[0]) - parseFloat(currentValue);
         currentArr[0] = currentValue;
         updateDisplay();
         currentValue ="";
     } else {
-    currentArr.push(parseInt(currentValue));
+    currentArr.push(parseFloat(currentValue));
     currentValue = "";
     }
 });
@@ -138,47 +172,50 @@ btnAdd.addEventListener("click", function() {
     operate();
     currentOpperator = "add";
     if (currentArr[0]) {
-        currentValue = parseInt(currentArr[0]) + parseInt(currentValue);
+        currentValue = parseFloat(currentArr[0]) + parseFloat(currentValue);
         currentArr[0] = currentValue;
         updateDisplay();
         currentValue ="";
     } else {
-    currentArr.push(parseInt(currentValue));
+    currentArr.push(parseFloat(currentValue));
     currentValue = "";
     }
 });
 
 btnSqrt.addEventListener("click", function() {
+    operate()
+    currentOpperator = "sqrt"
     currentValue = Math.sqrt(currentValue).toFixed(5);
+    currentValue = parseFloat(currentValue);
     updateDisplay();
 });
 
 btnPercent.addEventListener("click", function() {
     currentOpperator = "percentOf";
-    currentArr.push(parseInt(currentValue));
+    currentArr.push(parseFloat(currentValue));
     currentValue = "";
 });
 
 
 function operate() {
     if (currentOpperator == "add") {
-        currentArr.push(parseInt(currentValue));
+        currentArr.push(parseFloat(currentValue));
         currentValue = add(currentArr);
         currentArr = [];
     } else if (currentOpperator == "subtract") {
-        currentArr.push(parseInt(currentValue));
+        currentArr.push(parseFloat(currentValue));
         currentValue = subtract(currentArr);
         currentArr = [];
     } else if (currentOpperator == "divide") {
-        currentArr.push(parseInt(currentValue));
+        currentArr.push(parseFloat(currentValue));
         currentValue = divide(currentArr);
         currentArr = [];
     } else if (currentOpperator == "multiply") {
-        currentArr.push(parseInt(currentValue));
+        currentArr.push(parseFloat(currentValue));
         currentValue = multiply(currentArr);
         currentArr = [];
     } else if (currentOpperator == "percentOf") {
-        currentArr.push(parseInt(currentValue));
+        currentArr.push(parseFloat(currentValue));
         currentValue = percentOf(currentArr);
         currentArr = [];
     } 
@@ -219,7 +256,12 @@ function percentOf(currentArr) {
 function updateDisplay() {
     if (currentValue === Infinity) {
         displayScreen.innerText = "Nonsense!";
+    } else if (currentValue === NaN) {
+        displayScreen.innerText = "error";
+    } else if (currentValue == "") {
+        displayScreen.innerText = defaultOutput;
     } else {
     displayScreen.innerText = currentValue;
     }
 }
+
