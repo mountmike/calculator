@@ -1,0 +1,104 @@
+@font-face {
+    font-family: DigitalDream;
+    src: url(fonts/DIGITALDREAM.ttf)
+  }
+  
+@font-face {
+    font-family: Eurostile;
+    src: url(fonts/eurostile_extended_black.ttf)
+  }
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: DigitalDream;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calc-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #cf4e91;
+    border: 10px solid #b23970;
+    border-style: groove;
+    border-radius: 50px;
+    width: 800px;
+    height: 1000px;
+}
+
+.top-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+    width: 100%;
+
+}
+
+.top-container h2 {
+    font-family: Eurostile;
+    text-align: center;
+
+}
+
+.display-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 50px;
+}
+
+#display {
+    background-color: #d5e0e2;
+    border-radius: 10px;
+    flex: 5;
+    font-size: 5em;
+    text-align: end;
+    padding: 30px;
+}
+
+.bottom-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 3;
+    background-color: #c4497f;
+    border-radius: 50px;
+    width: 100%;
+    box-shadow: 5px 5px;
+}
+
+.button-area {
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+}
+
+.btn-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-column button {
+    width: 150px;
+    height: 100px;
+    margin: 10px;
+    border-radius: 20px;
+    font-size: 3em;
+    box-shadow: 2px 2px;
+}
+
+#plus {
+    flex: 2;
+}
