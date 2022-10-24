@@ -16,7 +16,7 @@ const btn0 = document.getElementById('btn0');
 
 const btnClear = document.getElementById('btnClear');
 const btnSqrt = document.getElementById('btnSqrt');
-const btnRemainder = document.getElementById('btnRemainder');
+const btnPercent = document.getElementById('btnPercent');
 const btnDivide = document.getElementById('btnDivide');
 const btnMultiply = document.getElementById('btnMultiply');
 const btnSubtract = document.getElementById('btnSubtract');
@@ -115,8 +115,14 @@ btnAdd.addEventListener("click", function() {
 });
 
 btnSqrt.addEventListener("click", function() {
-    currentValue = Math.sqrt(currentValue);
+    currentValue = Math.sqrt(currentValue).toFixed(5);
     updateDisplay();
+});
+
+btnPercent.addEventListener("click", function() {
+    currentOpperator = "percentOf";
+    currentArr.push(parseInt(currentValue));
+    currentValue = "";
 });
 
 
@@ -139,12 +145,16 @@ btnEquals.addEventListener("click", function() {
         currentArr.push(parseInt(currentValue));
         currentValue = multiply(currentArr);
         currentArr = [];
+    } else if (currentOpperator == "percentOf") {
+        currentArr.push(parseInt(currentValue));
+        currentValue = percentOf(currentArr);
+        currentArr = [];
     } 
     updateDisplay();
 });
 
 function divide(currentArr) {
-    return currentArr.reduce((a, b) => a - b);
+    return currentArr.reduce((a, b) => a / b);
 }
 
 function multiply(currentArr) {
@@ -157,6 +167,10 @@ function subtract(currentArr) {
 
 function add(currentArr) {
     return currentArr.reduce((a, b) => a + b);
+}
+
+function percentOf(currentArr) {
+    return currentArr.reduce((a, b) => (a/100) * b).toFixed(5);
 }
 
 function updateDisplay() {
