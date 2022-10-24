@@ -40,6 +40,7 @@ if (currentValue == "") {
 
 btnClear.addEventListener("click", function() {
     currentValue = "";
+    currentArr = [];
     displayScreen.innerText = defaultOutput;
 });  
 
@@ -97,18 +98,22 @@ btnAdd.addEventListener("click", function() {
     currentValue = "";
 });
 
-btnEquals.addEventListener("click", function() {
-    if (currentOpperator == "add") {
-        result = add(currentArr);
-        currentValue = result;
-    }
-});
-
 btnSqrt.addEventListener("click", function() {
     currentValue = Math.sqrt(currentValue);
     updateDisplay();
 });
 
+
+
+
+btnEquals.addEventListener("click", function() {
+    if (currentOpperator == "add") {
+        currentArr.push(parseInt(currentValue));
+        currentValue = add(currentArr);
+        currentArr = [];
+    }
+    updateDisplay();
+});
 
 
 function add(currentArr) {
