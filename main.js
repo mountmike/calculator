@@ -104,14 +104,28 @@ btnMultiply.addEventListener("click", function() {
 
 btnSubtract.addEventListener("click", function() {
     currentOpperator = "subtract";
+    if (currentArr[0]) {
+        currentValue = parseInt(currentArr[0]) - parseInt(currentValue);
+        currentArr[0] = currentValue;
+        updateDisplay();
+        currentValue ="";
+    } else {
     currentArr.push(parseInt(currentValue));
     currentValue = "";
+    }
 });
 
 btnAdd.addEventListener("click", function() {
     currentOpperator = "add";
+    if (currentArr[0]) {
+        currentValue = parseInt(currentArr[0]) + parseInt(currentValue);
+        currentArr[0] = currentValue;
+        updateDisplay();
+        currentValue ="";
+    } else {
     currentArr.push(parseInt(currentValue));
     currentValue = "";
+    }
 });
 
 btnSqrt.addEventListener("click", function() {
