@@ -38,6 +38,7 @@ if (currentValue == "") {
 
 
 
+
 btnClear.addEventListener("click", function() {
     currentValue = "";
     currentArr = [];
@@ -185,8 +186,14 @@ function operate() {
 }
 
 btnEquals.addEventListener("click", function() {
-    operate();
-    updateDisplay();
+    if (currentValue) {
+        operate();
+        updateDisplay();
+    } else {
+        currentValue = currentArr[0];
+        updateDisplay();
+        currentValue = "";
+    }
 });
 
 function divide(currentArr) {
@@ -210,5 +217,9 @@ function percentOf(currentArr) {
 }
 
 function updateDisplay() {
+    if (currentValue === Infinity) {
+        displayScreen.innerText = "Nonsense!";
+    } else {
     displayScreen.innerText = currentValue;
+    }
 }
