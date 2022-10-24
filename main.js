@@ -31,25 +31,65 @@ let currentArr = [];
 let currentOpperator = "";
 let result = "";
 
-displayScreen.innerText = defaultOutput;
+if (currentValue == "") {
+    displayScreen.innerText = defaultOutput;
+}
 
-document.addEventListener("click", function() {
-    displayScreen.innerText = currentValue;
+
+
+
+btnClear.addEventListener("click", function() {
+    currentValue = "";
+    displayScreen.innerText = defaultOutput;
+});  
+
+
+btn0.addEventListener("click", function() {
+    currentValue = currentValue + "0";
+    updateDisplay();
+});
+btn1.addEventListener("click", function() {
+    currentValue = currentValue + "1";
+    updateDisplay();
+});
+btn2.addEventListener("click", function() {
+    currentValue = currentValue + "2";
+    updateDisplay();
+});
+btn3.addEventListener("click", function() {
+    currentValue = currentValue + "3";
+    updateDisplay();
+});
+btn4.addEventListener("click", function() {
+    currentValue = currentValue + "4";
+    updateDisplay();
+});
+btn5.addEventListener("click", function() {
+    currentValue = currentValue + "5";
+    updateDisplay();
+});
+btn6.addEventListener("click", function() {
+    currentValue = currentValue + "6";
+    updateDisplay();
+});
+btn7.addEventListener("click", function() {
+    currentValue = currentValue + "7";
+    updateDisplay();
+});
+btn8.addEventListener("click", function() {
+    currentValue = currentValue + "8";
+    updateDisplay();
+});
+btn9.addEventListener("click", function() {
+    currentValue = currentValue + "9";
+    updateDisplay();
+});
+btnDecimal.addEventListener("click", function() {
+    currentValue = currentValue + ".";
+    updateDisplay();
 });
 
-btnClear.onclick = () => currentValue = 0;
 
-btn1.onclick = () => currentValue = currentValue + "1";
-btn2.onclick = () => currentValue = currentValue + "2";
-btn3.onclick = () => currentValue = currentValue + "3";
-btn4.onclick = () => currentValue = currentValue + "4";
-btn5.onclick = () => currentValue = currentValue + "5";
-btn6.onclick = () => currentValue = currentValue + "6";
-btn7.onclick = () => currentValue = currentValue + "7";
-btn8.onclick = () => currentValue = currentValue + "8";
-btn9.onclick = () => currentValue = currentValue + "9";
-btn0.onclick = () => currentValue = currentValue + "0";
-btnDecimal.onclick = () => currentValue = currentValue + ".";
 
 btnAdd.addEventListener("click", function() {
     currentOpperator = "add";
@@ -64,8 +104,17 @@ btnEquals.addEventListener("click", function() {
     }
 });
 
+btnSqrt.addEventListener("click", function() {
+    currentValue = Math.sqrt(currentValue);
+    updateDisplay();
+});
+
 
 
 function add(currentArr) {
     return currentArr.reduce((a, b) => a + b, 0);
+}
+
+function updateDisplay() {
+    displayScreen.innerText = currentValue;
 }
