@@ -28,8 +28,8 @@ main {
     display: flex;
     flex-direction: column;
     background-color: #cf4e91;
-    border: 10px solid #b23970;
-    border-style: groove;
+    border: 10px solid #b3557f;
+    border-style: outset;
     border-radius: 50px;
     width: 800px;
     height: 1000px;
@@ -49,34 +49,38 @@ main {
     font-size: 2em;
     text-align: left;
     color: white;
+    margin: 0px 50px 20px 50px;
 
 }
 
 .display-container {
     justify-content: space-between;
     align-items: center;
-    margin: 20px;
+    margin: 0 50px;
 
 }
 
 #display {
     background-color: #d5e0e2;
-    border-radius: 10px;
+    border: 10px solid #b94f7f;
+    border-radius: 20px;
+    border-style: inset;
     flex: 5;
     font-size: 5em;
     text-align: end;
-    padding: 30px 50px;
+    padding: 30px 40px;
 }
 
 .bottom-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    flex: 3;
     background-color: #c4497f;
-    border-radius: 50px;
-    width: 100%;
-    box-shadow: 5px 5px;
+    border-radius: 40px;   
+    border: 6px solid #7e435e;
+    border-style: outset;
+    width:99%;
+    margin-bottom: -5px;
 }
 
 .button-area {
@@ -96,11 +100,34 @@ main {
     width: 150px;
     height: 100px;
     margin: 10px;
-    border-radius: 20px;
+    border-radius: 30px;
     font-size: 3em;
-    box-shadow: 2px 2px;
+    background-color: #bf4684;
+    color: white;
+    border: 10px solid #d37ea5;
+    border-style: outset;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: lighter;
+}
+
+.btn-column button:active {
+    border-style: inset;
+}
+
+#darker button {
+    background-color: #974166;
 }
 
 #btnAdd {
     flex: 2;
+}
+
+#btnSqrt, #btnPercent {
+    background-color: #974166;
+}
+
+#btnClear {
+    background-color: #c56395;
+    font-size: 2em;
+    font-weight: lighter;
 }
