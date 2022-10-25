@@ -272,7 +272,7 @@ function percentOf(currentArr) {
 function updateDisplay() {
     if (currentValue === Infinity) {
         displayScreen.innerText = "Nonsense!";
-    } else if (currentValue === NaN || currentValue === 'NaN' || currentValue > 9999999999) {
+    } else if (currentValue === NaN || currentValue === 'NaN' || currentValue > 999999999999) {
         displayScreen.innerText = "error";
         currentArr = [];
         currentValue = "";
@@ -281,15 +281,15 @@ function updateDisplay() {
     } else {
         displayScreen.innerText = currentValue;
     }
-    if (currentValue.length > 9) {
-        currentValue = currentValue.substring(0,9);
+    if (currentValue.length > 11) {
+        currentValue = currentValue.substring(0,11);
     }
 }
 
 // Function to keep numbers from overflowing display
 function limitCharLength(num) {
     let str = num.toString();
-    return str.substring(0,9);
+    return str.substring(0,11);
 }
 
 // Set initial display value to 0
