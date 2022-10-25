@@ -1,5 +1,4 @@
 const defaultOutput = 0;
-const defaultValue = "";
 
 const displayScreen = document.getElementById('display');
 
@@ -26,7 +25,7 @@ const btnEquals = document.getElementById('btnEquals');
 
 
 let currentOutput = defaultOutput;
-let currentValue = defaultValue;
+let currentValue = 0;
 let currentArr = [];
 let currentOpperator = "";
 let result = "";
@@ -117,7 +116,9 @@ btn9.addEventListener("click", function() {
     updateDisplay();
 });
 btnDecimal.addEventListener("click", function() {
-    if (typeof(currentValue) == 'string') {
+    if (currentValue > Math.floor(currentValue)) {
+        currentValue = currentValue;
+    } else if (typeof(currentValue) == 'string') {
         currentValue = currentValue + ".";
     } else {
         currentValue = ".";
@@ -226,6 +227,7 @@ btnEquals.addEventListener("click", function() {
     if (currentValue) {
         operate();
         updateDisplay();
+        currentArr = [];
     } else {
         currentValue = currentArr[0];
         updateDisplay();
@@ -234,34 +236,48 @@ btnEquals.addEventListener("click", function() {
 });
 
 function divide(currentArr) {
-    return currentArr.reduce((a, b) => a / b);
+    let result = currentArr.reduce((a, b) => a / b);
+    return limitCharLength(result);
 }
 
 function multiply(currentArr) {
-    return currentArr.reduce((a, b) => a * b);
+    let result = currentArr.reduce((a, b) => a * b);
+    return limitCharLength(result);
 }
 
 function subtract(currentArr) {
-    return currentArr.reduce((a, b) => a - b);
+    let result = currentArr.reduce((a, b) => a - b);
+    return limitCharLength(result);
 }
 
 function add(currentArr) {
-    return currentArr.reduce((a, b) => a + b);
+    let result = currentArr.reduce((a, b) => a + b);
+    return limitCharLength(result);
 }
 
 function percentOf(currentArr) {
-    return currentArr.reduce((a, b) => (a/100) * b).toFixed(5);
+    let result = currentArr.reduce((a, b) => (a/100) * b).toFixed(5);
+    return limitCharLength(result);
 }
 
 function updateDisplay() {
     if (currentValue === Infinity) {
         displayScreen.innerText = "Nonsense!";
-    } else if (currentValue === NaN) {
+    } else if (currentValue === NaN || currentValue === 'NaN' || currentValue > 9999999999) {
         displayScreen.innerText = "error";
+        currentArr = [];
+        currentValue = "";
     } else if (currentValue == "") {
         displayScreen.innerText = defaultOutput;
     } else {
-    displayScreen.innerText = currentValue;
+        displayScreen.innerText = currentValue;
+    }
+    if (currentValue.length > 9) {
+        currentValue = currentValue.substring(0,9);
     }
 }
 
+function limitCharLength(num) {
+    let str = num.toString();
+    return str.substring(0,9);
+}

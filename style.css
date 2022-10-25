@@ -46,15 +46,17 @@ main {
 
 .top-container h2 {
     font-family: Eurostile;
-    text-align: center;
+    font-size: 2em;
+    text-align: left;
+    color: white;
 
 }
 
 .display-container {
-    display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 20px 50px;
+    margin: 20px;
+
 }
 
 #display {
@@ -63,7 +65,7 @@ main {
     flex: 5;
     font-size: 5em;
     text-align: end;
-    padding: 30px;
+    padding: 30px 50px;
 }
 
 .bottom-container {
