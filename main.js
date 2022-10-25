@@ -1,7 +1,7 @@
-const defaultOutput = 0;
-
+// Calculator display screen variable
 const displayScreen = document.getElementById('display');
 
+// Calculator button variables
 const btn1 = document.getElementById('btn1');
 const btn2 = document.getElementById('btn2');
 const btn3 = document.getElementById('btn3');
@@ -12,7 +12,6 @@ const btn7 = document.getElementById('btn7');
 const btn8 = document.getElementById('btn8');
 const btn9 = document.getElementById('btn9');
 const btn0 = document.getElementById('btn0');
-
 const btnClear = document.getElementById('btnClear');
 const btnSqrt = document.getElementById('btnSqrt');
 const btnPercent = document.getElementById('btnPercent');
@@ -23,22 +22,20 @@ const btnAdd = document.getElementById('btnAdd');
 const btnDecimal = document.getElementById('btnDecimal');
 const btnEquals = document.getElementById('btnEquals');
 
-
-let currentOutput = defaultOutput;
+// setting default runtime variables
+const defaultOutput = 0;
 let currentValue = 0;
 let currentArr = [];
 let currentOpperator = "";
-let result = "";
 
-updateDisplay();
-
+// Clear button functionality 
 btnClear.addEventListener("click", function() {
     currentValue = "";
     currentArr = [];
     displayScreen.innerText = defaultOutput;
 });  
 
-
+// Number buttons functionality 
 btn0.addEventListener("click", function() {
     currentValue = currentValue + "0";
     updateDisplay();
@@ -126,11 +123,13 @@ btnDecimal.addEventListener("click", function() {
     updateDisplay();
 });
 
-// operator buttons
+// Operator button functionality 
 btnDivide.addEventListener("click", function() {
     operate();
     currentOpperator = "divide";
-    if (currentArr[0]) {
+    if (currentValue === "") {
+        return false;
+    } else if (currentArr[0]) {
         currentValue = parseFloat(currentArr[0]) / parseFloat(currentValue);
         currentArr[0] = currentValue;
         updateDisplay();
@@ -144,7 +143,9 @@ btnDivide.addEventListener("click", function() {
 btnMultiply.addEventListener("click", function() {
     operate();
     currentOpperator = "multiply";
-    if (currentArr[0]) {
+    if (currentValue === "") {
+        return false;
+    } else if (currentArr[0]) {
         currentValue = parseFloat(currentArr[0]) * parseFloat(currentValue);
         currentArr[0] = currentValue;
         updateDisplay();
@@ -158,7 +159,9 @@ btnMultiply.addEventListener("click", function() {
 btnSubtract.addEventListener("click", function() {
     operate();
     currentOpperator = "subtract";
-    if (currentArr[0]) {
+    if (currentValue === "") {
+        return false;
+    } else if (currentArr[0]) {
         currentValue = parseFloat(currentArr[0]) - parseFloat(currentValue);
         currentArr[0] = currentValue;
         updateDisplay();
@@ -172,11 +175,13 @@ btnSubtract.addEventListener("click", function() {
 btnAdd.addEventListener("click", function() {
     operate();
     currentOpperator = "add";
-    if (currentArr[0]) {
+    if (currentValue === "") {
+        return false;
+    } else if (currentArr[0]) {
         currentValue = parseFloat(currentArr[0]) + parseFloat(currentValue);
         currentArr[0] = currentValue;
         updateDisplay();
-        currentValue ="";
+        currentValue = "";
     } else {
     currentArr.push(parseFloat(currentValue));
     currentValue = "";
@@ -197,9 +202,23 @@ btnPercent.addEventListener("click", function() {
     currentValue = "";
 });
 
+btnEquals.addEventListener("click", function() {
+    if (currentValue) {
+        operate();
+        updateDisplay();
+        currentArr = [];
+    } else {
+        currentValue = currentArr[0];
+        updateDisplay();
+        currentValue = "";
+    }
+});
 
+// Operator function
 function operate() {
-    if (currentOpperator == "add") {
+    if (currentValue === "") {
+        return false;
+    } else if (currentOpperator == "add") {
         currentArr.push(parseFloat(currentValue));
         currentValue = add(currentArr);
         currentArr = [];
@@ -223,18 +242,7 @@ function operate() {
     updateDisplay();
 }
 
-btnEquals.addEventListener("click", function() {
-    if (currentValue) {
-        operate();
-        updateDisplay();
-        currentArr = [];
-    } else {
-        currentValue = currentArr[0];
-        updateDisplay();
-        currentValue = "";
-    }
-});
-
+// Various math functions
 function divide(currentArr) {
     let result = currentArr.reduce((a, b) => a / b);
     return limitCharLength(result);
@@ -260,6 +268,7 @@ function percentOf(currentArr) {
     return limitCharLength(result);
 }
 
+// Function to update values and results on the display
 function updateDisplay() {
     if (currentValue === Infinity) {
         displayScreen.innerText = "Nonsense!";
@@ -277,7 +286,11 @@ function updateDisplay() {
     }
 }
 
+// Function to keep numbers from overflowing display
 function limitCharLength(num) {
     let str = num.toString();
     return str.substring(0,9);
 }
+
+// Set initial display value to 0
+updateDisplay();
