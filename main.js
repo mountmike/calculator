@@ -294,3 +294,4 @@ function limitCharLength(num) {
 
 // Set initial display value to 0
 updateDisplay();
+

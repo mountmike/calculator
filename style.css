@@ -24,6 +24,21 @@ main {
     align-items: center;
 }
 
+footer {
+    z-index: 1;
+    bottom: 0px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.5em;
+}
+
+a:visited {
+    color: black;
+  }
+
+a:hover {
+    color: #cf4e91;
+}
+
 .calc-container {
     display: flex;
     flex-direction: column;
@@ -148,3 +163,13 @@ main {
     font-size: 1em;
     font-weight: lighter;
 }
+
+.fa-github {
+    font-size: 30px;
+    transition: transform 0.3s ease-in-out;
+    color: black;
+  }
+  
+  .fa-github:hover {
+    transform: rotate(360deg) scale(1.2);
+  }
