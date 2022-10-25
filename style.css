@@ -15,7 +15,6 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    font-family: DigitalDream;
 }
 
 main {
@@ -92,6 +91,7 @@ a:hover {
     border: 10px solid #b94f7f;
     border-radius: 20px;
     border-style: inset;
+    font-family: DigitalDream;
     font-size: 2em;
     text-align: end;
     padding: 10px;
